@@ -1,0 +1,29 @@
+version: '3.4'
+services:
+  geekshubs_bd:
+    image: geekshubs_bd
+    container_name: geekshubs_bd
+    build:
+      context: bd
+      target: geekshubs_bd
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: presto
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    volumes:
+      - ../db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  geekshubs_casandra:
+    image: cassandra
+    container_name: geekshubs_cassandra
+    ports:
+      - "7000:7000"
+  geekshubs_presto:
+    image: starburstdata/presto
+    volumes:
+      - ./catalog:/etc/presto/catalog
+    ports:
+      - "8080:8080"
+   
