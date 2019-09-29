@@ -12,7 +12,8 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: root
     volumes:
-      - ../db:/var/lib/mysql
+      - ./db:/var/lib/mysql
+      - ./data:/var/data
     ports:
       - "3306:3306"
   geekshubs_casandra:
